@@ -12,9 +12,9 @@ The platform combines AI, full-stack development, authentication, persistent dat
 
 InterviewIQ AI provides an end-to-end interview preparation experience that helps candidates practice, evaluate, and improve their interview performance.
 
-## Core Capabilities
+### Core Capabilities
 
-### AI-Powered Interview Generation
+**AI-Powered Interview Generation**
 - Role-specific interview questions
 - Experience-level customization
 - Technical interviews
@@ -24,33 +24,35 @@ InterviewIQ AI provides an end-to-end interview preparation experience that help
 - HR / Behavioral interviews
 - Mixed interviews
 
-### AI-Powered Answer Evaluation
+**AI-Powered Answer Evaluation**
 - Dynamic scoring
 - Detailed feedback
 - Strength and weakness analysis
 - Actionable improvement recommendations
 
-### Voice Interviews
+**Voice Interviews**
 - Speech recognition
 
-### Resume Upload and Analysis
+**Resume Upload and Analysis**
 - Resume-based personalized questions
 
-### Project Defense Interviews
+**Project Defense Interviews**
 
-### Interview History
+**Interview History**
 
-### Performance Dashboard
+**Performance Dashboard**
 
-### AI Insights
+**AI Insights**
 
-### User Authentication
+**User Authentication**
 
-### Persistent Database Storage
+**Persistent Database Storage**
 
-### Cross-Device Synchronization
+**Cross-Device Synchronization**
 
-### Guest/Local Storage Support
+**Guest/Local Storage Support**
+
+---
 
 ## Key Features
 
@@ -66,16 +68,18 @@ Interview configuration includes:
 
 The AI then generates questions based on the selected configuration.
 
-#### Multiple Interview Modes
+### Multiple Interview Modes
 
 | Interview Mode | Purpose |
-|----------------|---------|
+|---|---|
 | Technical | Core technical knowledge and fundamentals |
 | Coding | Programming and problem-solving |
 | System Design | Architecture, scalability, and design |
 | Generative AI | LLMs, RAG, AI agents, and GenAI systems |
 | HR / Behavioral | Communication and behavioral preparation |
 | Mixed | Combined interview simulation |
+
+---
 
 ### Adaptive Interview Experience
 
@@ -108,6 +112,8 @@ Questions can be tailored according to:
 - Candidate responses
 - Interview context
 
+---
+
 ### AI Answer Evaluation
 
 InterviewIQ AI evaluates answers based on their actual content.
@@ -139,6 +145,8 @@ Improvement Suggestions
 ```
 
 The system generates scores and feedback from the candidate's response rather than relying on fixed demonstration scores.
+
+---
 
 ### Voice Interview
 
@@ -173,6 +181,8 @@ AI Evaluation
 
 This allows candidates to practice communication and verbal delivery in addition to technical knowledge.
 
+---
+
 ### Resume Intelligence
 
 Users can upload a PDF resume and use it to generate more personalized interview preparation.
@@ -192,6 +202,8 @@ Personalized Questions
 ```
 
 Questions can be generated around information contained in the candidate's resume, helping prepare for resume-based interview discussions.
+
+---
 
 ### Project Defense
 
@@ -224,6 +236,8 @@ The objective is to prepare candidates for questions such as:
 - What would happen if the system had to scale?
 - What were the main technical challenges?
 
+---
+
 ### Dashboard
 
 The Dashboard provides a centralized overview of interview preparation.
@@ -242,6 +256,8 @@ The Dashboard provides a centralized overview of interview preparation.
   - Resume access
   - Project Defense access
 
+---
+
 ### Interview History
 
 Completed interview sessions can be stored and retrieved for future review.
@@ -257,6 +273,8 @@ Interview records can contain:
 
 Authenticated users can retrieve their persistent interview history through the backend API.
 
+---
+
 ### Performance Insights
 
 The Insights section analyzes interview performance and helps identify areas that require additional practice.
@@ -269,6 +287,8 @@ The Insights section analyzes interview performance and helps identify areas tha
 - Completeness
 
 The architecture also provides a foundation for expanding analytics into long-term skill progression and personalized learning.
+
+---
 
 ### Authentication
 
@@ -303,6 +323,8 @@ Persistent User Data
 - `GET  /api/auth/me`
 
 The frontend authentication context manages authentication state, token handling, refresh behavior, and logout.
+
+---
 
 ## Application Architecture
 
@@ -344,6 +366,8 @@ InterviewIQ AI follows a full-stack client-server architecture.
                  SQLite / PostgreSQL
 ```
 
+---
+
 ## Final Architecture
 
 ![Final Architecture](final-architecture.png)
@@ -380,6 +404,8 @@ InterviewIQ AI follows a full-stack client-server architecture.
            / Insights
 ```
 
+---
+
 ## Backend Architecture
 
 The backend is implemented using FastAPI and provides authenticated API services.
@@ -412,10 +438,12 @@ backend/
 - `GET  /api/interviews/:id`
 
 **Resume:**
-- `GET  /api/resume`
-- `PUT  /api/resume`
+- `GET /api/resume`
+- `PUT /api/resume`
 
 **Health:** The backend also provides a health-check endpoint for service verification.
+
+---
 
 ## Database Architecture
 
@@ -439,6 +467,8 @@ DATABASE_URL=<database-url>
 ```
 
 The development configuration can use SQLite, while the architecture supports PostgreSQL/Supabase deployment.
+
+---
 
 ## Data Persistence
 
@@ -521,6 +551,8 @@ Authenticated user data can be accessed from multiple browsers or devices throug
 
 This allows interview history and other persisted user information to move beyond a single browser.
 
+---
+
 ## Technology Stack
 
 ### Frontend
@@ -572,6 +604,8 @@ This allows interview history and other persisted user information to move beyon
 - FastAPI-compatible backend hosting
 - PostgreSQL/Supabase-compatible database
 
+---
+
 ## Project Structure
 
 ```
@@ -618,6 +652,8 @@ InterviewIQ-AI/
 └── README.md
 ```
 
+---
+
 ## Installation
 
 ### Prerequisites
@@ -627,20 +663,17 @@ InterviewIQ-AI/
 - Git
 
 ### Clone Repository
-
 ```bash
 git clone <YOUR_GITHUB_REPOSITORY_URL>
 cd InterviewIQ-AI
 ```
 
 ### Install Frontend Dependencies
-
 ```bash
 npm install
 ```
 
 ### Install Backend Dependencies
-
 ```bash
 cd backend
 pip install -r requirements.txt
@@ -651,27 +684,23 @@ pip install -r requirements.txt
 **Frontend**
 
 Create `.env.local`:
-
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:8000
 ```
 
 For production:
-
 ```env
 NEXT_PUBLIC_API_URL=https://your-production-api.example.com
 ```
 
 **Backend:**
-
-```env
+```
 DATABASE_URL=sqlite:///./interviewiq.db
 SECRET_KEY=your-development-secret
 ```
 
 For production:
-
-```env
+```
 DATABASE_URL=<production-database-url>
 SECRET_KEY=<strong-production-secret>
 ```
@@ -681,51 +710,45 @@ SECRET_KEY=<strong-production-secret>
 ### Running Locally
 
 **Start Backend:**
-
 ```bash
 cd backend
 uvicorn main:app --reload
 ```
-
 - Backend: http://localhost:8000
 - Swagger documentation: http://localhost:8000/docs
 
 **Start Frontend:**
 
 From the project root:
-
 ```bash
 npm run dev
 ```
-
 - Frontend: http://localhost:3000
 
 ### Production Build
 
 Build the frontend:
-
 ```bash
 npm run build
 ```
 
 Start production server:
-
 ```bash
 npm start
 ```
+
+---
 
 ## Deployment
 
 ### Frontend
 
 The Next.js application can be deployed to Vercel.
-
 ```bash
 npx vercel --prod
 ```
 
 Configure the production API URL in Vercel:
-
 ```env
 NEXT_PUBLIC_API_URL=<production-api-url>
 ```
@@ -735,7 +758,6 @@ NEXT_PUBLIC_API_URL=<production-api-url>
 Deploy the FastAPI backend to a production-compatible hosting service.
 
 Configure:
-
 ```env
 DATABASE_URL=<production-database-url>
 SECRET_KEY=<strong-production-secret>
@@ -785,6 +807,8 @@ Also verify:
 - ✅ Authentication
 - ✅ API connectivity
 - ✅ Responsive layouts
+
+---
 
 ## Testing & Validation
 
@@ -856,6 +880,8 @@ The application has been tested across its major workflows.
 - ✅ Authentication routes
 - ✅ Frontend/backend integration
 
+---
+
 ## Security & Privacy
 
 InterviewIQ AI uses authentication and server-side persistence for authenticated users.
@@ -876,6 +902,8 @@ Security considerations include:
 - Guest data can remain browser-local.
 - Authenticated user data is associated with the user's account and persisted through the backend/database architecture.
 - Production deployments should use HTTPS and properly secured database credentials.
+
+---
 
 ## Performance & Reliability
 
@@ -899,6 +927,8 @@ The application is designed around separated frontend and backend responsibiliti
 - Database interaction
 
 This separation allows the application to scale beyond a browser-only architecture.
+
+---
 
 ## Project Workflow
 
@@ -943,6 +973,8 @@ This separation allows the application to scale beyond a browser-only architectu
           History / Dashboard / Insights
 ```
 
+---
+
 ## Why InterviewIQ AI?
 
 Traditional interview preparation often depends on:
@@ -978,6 +1010,8 @@ Cross-Device Synchronization
        InterviewIQ AI
 ```
 
+---
+
 ## Target Users
 
 InterviewIQ AI is designed for:
@@ -993,6 +1027,8 @@ InterviewIQ AI is designed for:
 - Candidates preparing for technical interviews
 - Candidates preparing for behavioral interviews
 - Candidates preparing for AI/ML interviews
+
+---
 
 ## Product Vision
 
@@ -1021,6 +1057,8 @@ Practice Again
    ↓
 Improve
 ```
+
+---
 
 ## Roadmap
 
@@ -1053,6 +1091,8 @@ Future improvements can include:
 - More advanced voice interaction
 - Expanded user profiles
 
+---
+
 ## Project Status
 
 InterviewIQ AI is a full-stack AI interview preparation platform.
@@ -1060,7 +1100,7 @@ InterviewIQ AI is a full-stack AI interview preparation platform.
 **Current platform capabilities include:**
 
 | Feature | Status |
-|---------|--------|
+|---|---|
 | AI Interviews | ✓ |
 | AI Evaluation | ✓ |
 | Voice Interviews | ✓ |
@@ -1075,6 +1115,8 @@ InterviewIQ AI is a full-stack AI interview preparation platform.
 | Persistent Data | ✓ |
 | Cross-Device Foundation | ✓ |
 | Production Deployment | ✓ |
+
+---
 
 ## Future Architecture
 
@@ -1111,6 +1153,8 @@ The architecture is designed to support further expansion:
                  Personalized AI Coach
 ```
 
+---
+
 ## Conclusion
 
 InterviewIQ AI is a full-stack AI-powered interview preparation platform combining:
@@ -1131,15 +1175,21 @@ The platform is designed around a single objective:
 
 > Help candidates practice realistic interviews, understand their weaknesses, and continuously improve their interview performance through AI-powered feedback.
 
+---
+
 ## Live Demo
 
 🚀 **Experience the live application:** [InterviewIQ AI](https://ai-mock-interview-pj03qbplx-kalyan870s-projects.vercel.app/)
+
+---
 
 ## Author
 
 **Kalyan**
 
 Computer Science Student | AI Engineering | Generative AI | LLMs | AI Agents | Full-Stack Development
+
+---
 
 ## License
 
