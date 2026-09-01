@@ -3,10 +3,20 @@
 > **AI-powered interview intelligence for deliberate practice.**
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20InterviewIQ%20AI-246BFE?style=for-the-badge)](https://ai-mock-interview-pj03qbplx-kalyan870s-projects.vercel.app)
+[![Verify application](https://github.com/kalyan870/interviewiq-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/kalyan870/interviewiq-ai/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-17A673.svg)](LICENSE)
 
 InterviewIQ AI is a full-stack mock-interview platform that conducts a role-specific interview one question at a time, evaluates every answer, adapts difficulty, and produces an actionable readiness report.
 
 **[Open the live application →](https://ai-mock-interview-pj03qbplx-kalyan870s-projects.vercel.app)**
+
+## Portfolio highlights
+
+- Built an adaptive interview engine that evolves from evaluation to a difficulty decision, targeted follow-up, or next question.
+- Designed structured LLM evaluation around five weighted interview-quality dimensions instead of a generic chat response.
+- Kept provider credentials server-side and provided a deterministic local fallback for a useful developer experience without an API key.
+- Modelled production persistence with a Supabase/PostgreSQL migration and row-level security, while keeping frontend and FastAPI responsibilities separate.
+- Added PDF validation and PyMuPDF resume extraction so questions can be contextualised around candidate experience.
 
 ## What it delivers
 
