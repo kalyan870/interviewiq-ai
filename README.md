@@ -19,6 +19,101 @@ InterviewIQ AI is a full-stack mock-interview platform that conducts a role-spec
 - Project-defense-ready interview configuration
 - Responsive InterviewIQ dashboard with readiness score and progress visualisation
 
+## Complete interview intelligence workflow
+
+```text
+Candidate profile + target role + experience + interview mode
+                         ↓
+                 AI Interview Engine
+                         ↓
+               Role-specific question
+                         ↓
+                Candidate response
+                         ↓
+      Structured evaluation and gap detection
+                         ↓
+       Difficulty decision + contextual follow-up
+                         ↓
+      Next question or Interview Intelligence Report
+```
+
+The engine maintains the interview context rather than treating each answer as an isolated chat message. Strong answers can increase difficulty; partial answers retain the level; weak or incomplete answers can produce a foundational follow-up.
+
+## Interview modes
+
+| Mode | Interview focus |
+| --- | --- |
+| Technical | Core concepts, implementation, APIs, reliability, and role knowledge |
+| Coding | Algorithms, data structures, complexity, edge cases, and explanation |
+| System Design | Architecture, scalability, availability, data flow, and trade-offs |
+| Generative AI | LLMs, RAG, evaluation, AI agents, safety, latency, and cost |
+| HR / Behavioral | Communication, impact, decision-making, and experience stories |
+| Mixed | A realistic blend of technical and behavioral questions |
+| Resume-led | Questions grounded in extracted resume context |
+| Project Defense | Architecture, technology choices, security, scaling, failures, deployment, and cost of a selected project |
+
+## Answer evaluation
+
+Every response is evaluated as structured data rather than a plain text comment.
+
+| Dimension | Weight |
+| --- | ---: |
+| Correctness | 30% |
+| Relevance | 20% |
+| Completeness | 20% |
+| Clarity | 15% |
+| Technical depth | 15% |
+
+The report includes a 0–10 answer score, detailed feedback, strengths, missing concepts, a stronger model answer, a difficulty decision, and targeted study recommendations. The final readiness report groups results into technical knowledge, communication, and problem-solving signals.
+
+## Resume Intelligence
+
+Candidates can upload a PDF resume. The FastAPI service validates file type and size, extracts text with PyMuPDF, and passes only relevant profile context to the interview engine. This makes it possible to ask meaningful follow-ups such as:
+
+> “Explain the retrieval pipeline you implemented in your RAG project. Why was that vector-search approach appropriate?”
+
+Production storage should keep uploaded files private, associate metadata with the authenticated user, and never write resume content or API keys to logs.
+
+## Dashboard, history, and personalised learning
+
+The InterviewIQ dashboard is designed around a clear Interview Readiness Score and category-level signals. Its learning loop is:
+
+```text
+Practice → Evaluate → Detect weaknesses → Recommend topics → Practice again → Measure progress
+```
+
+The UI already presents readiness, recent performance, and recommended practice. Durable history, per-topic trends, cross-device sync, and authenticated user analytics are the next persistence phase.
+
+## Product capability status
+
+| Capability | Status |
+| --- | --- |
+| Configurable adaptive text interview | Available |
+| AI structured evaluation with server-side OpenAI key | Available when `OPENAI_API_KEY` is configured |
+| Role-aware local demo experience | Available without an API key |
+| Resume PDF validation and text extraction | Available |
+| Resume-led and project-defense question configuration | Available |
+| Final readiness report and print-to-PDF export | Available |
+| Supabase schema and row-level-security migration | Included; connection is a deployment step |
+| Supabase Auth, account settings, and protected routes | Planned integration |
+| Persistent interview history and cross-device analytics | Planned integration |
+| Voice transcription / speech recognition | Planned integration |
+| Sandboxed executable coding submissions | Planned integration — never run arbitrary code in the main API service |
+| LangGraph state orchestration | Planned integration |
+
+## Security and privacy
+
+- OpenAI and Supabase service keys are server-only environment variables.
+- Client requests are validated with Pydantic models.
+- Resume uploads accept PDFs only and enforce a 5 MB limit.
+- CORS is configured through the `ALLOWED_ORIGINS` environment variable.
+- Supabase migration enables row-level security to keep future persisted data scoped to the authenticated owner.
+- A future coding runtime must be isolated in a dedicated sandbox with strict resource and network restrictions.
+
+## Who it is for
+
+InterviewIQ AI is for students, fresh graduates, software engineers, AI/ML and GenAI developers, backend and full-stack developers, and anyone preparing for technical, behavioral, or project-defense interviews.
+
 ## Application Architecture
 
 The application keeps browser presentation, backend orchestration, AI evaluation, and persisted data responsibilities separate. The diagram below captures the wider product architecture and planned production integrations.
