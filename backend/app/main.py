@@ -9,6 +9,7 @@ from app.services.repository import repository
 
 app = FastAPI(title="AI Mock Interview Partner", version="1.0.0")
 app.add_middleware(CORSMiddleware, allow_origins=settings.allowed_origins.split(","), allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+MAX_RESUME_BYTES = 5 * 1024 * 1024
 
 
 @app.get("/health")
@@ -59,12 +60,15 @@ def get_report(interview_id: UUID):
 async def parse_resume(file: UploadFile = File(...)):
     if file.content_type != "application/pdf":
         raise HTTPException(415, "Please upload a PDF resume")
-    content = await file.read()
-    if len(content) > 5 * 1024 * 1024:
+    # Read only one byte past the limit so oversized requests cannot be copied
+    # entirely into application memory before the size check.
+    content = await file.read(MAX_RESUME_BYTES + 1)
+    if len(content) > MAX_RESUME_BYTES:
         raise HTTPException(413, "Resume must be smaller than 5 MB")
     try:
-        document = pymupdf.open(stream=content, filetype="pdf")
-        text = "\n".join(page.get_text() for page in document)
+        with pymupdf.open(stream=content, filetype="pdf") as document:
+            text = "\n".join(page.get_text() for page in document)
+            pages = len(document)
     except Exception as exc:
         raise HTTPException(422, "We could not read this PDF") from exc
-    return {"text": text[:12000], "pages": len(document)}
+    return {"text": text[:12000], "pages": pages}
